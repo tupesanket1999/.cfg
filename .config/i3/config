@@ -233,7 +233,7 @@ bindsym $mod+r mode "resize"
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5    # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
-exec_always feh --bg-scale ~/Pictures/deer.png_
+exec_always feh --bg-scale ./deer.png
 
 for_window [class="^.*"] border pixel 1                                         
 #gaps inner 4                                                  
