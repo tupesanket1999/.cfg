@@ -19,6 +19,7 @@ set showtabline=2
 set noshowmode
 
 call plug#begin('~/.vim/plugged')
+Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -33,6 +34,7 @@ Plug 'preservim/nerdtree'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'mbbill/undotree'
 Plug 'sheerun/vim-polyglot'
 Plug 'prettier/vim-prettier', {
@@ -54,7 +56,21 @@ call plug#end()
 
 let g:gruvbox_invert_selection='0'
 let g:gruvbox_contrast_dark = 'hard'
+set bg=dark
 colorscheme gruvbox
+
+
+"set t_Co=256   " This is may or may not needed.
+"set bg=dark
+"set background=dark
+"colorscheme PaperColor
+
+"set termguicolors  
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme ayu
+
 
 call glaive#Install()
 Glaive codefmt plugin[mappings]
@@ -104,6 +120,5 @@ python3 powerline_setup()
 python3 del powerline_setup
 
 set laststatus=2
-set bg=dark
 hi Normal guibg=NONE ctermbg=NONE
 "highlight ColorColumn ctermbg=0 guibg=darkgrey
