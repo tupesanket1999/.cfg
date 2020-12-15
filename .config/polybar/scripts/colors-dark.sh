@@ -316,5 +316,5 @@ echo "Available options:
 -cyan		-deep-orange		-deep-purple		-green
 -grey		-indigo			-light-blue		-light-green
 -lime		-orange			-pink			-purple
--red		-teal			-yellow"
+-red		-teal			-yellow -my-custom-color"
 fi

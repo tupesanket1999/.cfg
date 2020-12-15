@@ -46,5 +46,6 @@ MENU="$(rofi -sep "|" -dmenu -i -p 'Select' -location 3 -columns 4 -xoffset -10 
 				*purple-dark) $SDIR/colors-dark.sh -purple ;;
 				*red-dark) $SDIR/colors-dark.sh -red ;;
 				*teal-dark) $SDIR/colors-dark.sh -teal ;;
-				*yellow-dark) $SDIR/colors-dark.sh -yellow				
+				*yellow-dark) $SDIR/colors-dark.sh -yellow ;;
+				*my-custom-color) $DIR/colors-dark.sh -my-custom-color ;;
             esac
