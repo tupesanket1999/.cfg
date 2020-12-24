@@ -23,7 +23,8 @@ ZSH_DISABLE_COMPFIX=true
 
 alias chrome='chromium'
 alias shut='sudo systemctl hibernate'
-
+alias :wq='exit'
+alias :q='exit'
 vimc(){
   cp ~/Code/cpp_snippet.cpp ./$1 && vim ./$1
 }

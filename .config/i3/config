@@ -305,3 +305,4 @@ exec --no-startup-id "sh -c 'sleep 10; exec alsactl restore'"
 #}
 exec_always --no-startup-id  ~/.config/i3/alternating_layouts.py
 exec --no-startup-id i3-msg "workspace 1 Terminals; append_layout ~/.config/i3/layout-MAIN_SCREEN.json"
+bindsym $mod+Shift+End exec --no-startup-id ~/.config/i3/my-i3lock-config.sh
