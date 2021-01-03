@@ -25,6 +25,11 @@ alias chrome='chromium'
 alias shut='sudo systemctl hibernate'
 alias :wq='exit'
 alias :q='exit'
+
+copy(){
+    xsel -b < ./$1
+}
+
 vimc(){
   cp ~/Code/cpp_snippet.cpp ./$1 && vim ./$1
 }
