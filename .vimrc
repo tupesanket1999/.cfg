@@ -17,8 +17,24 @@ set incsearch
 set colorcolumn=80
 set showtabline=2
 set noshowmode
+set relativenumber
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
 
+"file shortcuts saving and !q
+inoremap jj <esc>
+nnoremap zz :w<CR>
+nnoremap zzq :wq!<CR>
+nnoremap zq :q!<CR>
+
+"Plugin for vim  
 call plug#begin('~/.vim/plugged')
+Plug 'mlaursen/vim-react-snippets'
+Plug 'honza/vim-snippets'
 Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
@@ -37,6 +53,7 @@ Plug 'google/vim-glaive'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'mbbill/undotree'
 Plug 'sheerun/vim-polyglot'
+
 Plug 'prettier/vim-prettier', {
             \ 'do': 'npm install',
             \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -49,17 +66,22 @@ augroup autoformat_settings
     autocmd FileType java AutoFormatBuffer google-java-format
     autocmd FileType python AutoFormatBuffer yapf
 augroup END
+
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 call plug#end()
+"Plugin ended
 
 
+
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+"Colour scheme
 let g:gruvbox_invert_selection='0'
 let g:gruvbox_contrast_dark = 'hard'
 set bg=dark
 colorscheme gruvbox
 
-
+"Themes
 "set t_Co=256   " This is may or may not needed.
 "set bg=dark
 "set background=dark
@@ -71,10 +93,10 @@ colorscheme gruvbox
 "let ayucolor="dark"   " for dark version of theme
 "colorscheme ayu
 
-
+"Java formater
 call glaive#Install()
 Glaive codefmt plugin[mappings]
-Glaive codefmt google_java_executable="java -jar /home/sanket/google-java-format-1.8-all-deps.jar --aosp"
+Glaive codefmt google_java_executable="java -jar ~/google-java-format-1.8-all-deps.jar --aosp"
 Glaive codefmt clang_format_style="{IndentWidth: 4}"
 
 
@@ -98,6 +120,7 @@ if exists('+termguicolors')
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
+"Some shortcut keys
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
@@ -115,10 +138,34 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap tl :tabn<CR>
 nnoremap th :tabp<CR>
 
+"status
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
-
 set laststatus=2
-"hi Normal guibg=NONE ctermbg=NONE
-"highlight ColorColumn ctermbg=0 guibg=darkgrey
+
+"Coc AutoCompleteh
+if has("patch-8.1.1564")
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif

@@ -36,13 +36,18 @@ vimc(){
 
 run(){
        case $1 in 
-           *.cpp)   g++ $1 && ./a.out ;;
-           *.c)     gcc $1 && ./a.out ;;
-           *.java) java $1 ;;
+           *.cpp)   g++ -std=c++17 -Wshadow -Wall $1 -o a.out -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG  && time ./a.out ;;
+           *.cpp) g++ -std=c++17 -Wshadow -Wall $1 -o a.out -O2 -Wno-unused-result && time ./a.out ;;
            *)   echo "'$1' cannot be compiles & run";;
        esac 
 }
 
+frun(){
+       case $1 in 
+           *.cpp) g++ -std=c++17 -Wshadow -Wall $1 -o a.out -O2 -Wno-unused-result && time ./a.out ;;
+           *)   echo "'$1' cannot be compiles & run";;
+       esac 
+}
 if [[ $1 == eval ]]
 then
     "neofetch"
@@ -186,6 +191,8 @@ ZSH_HIGHLIGHT_STYLES[assign]=none
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+
+
 export PATH=$PATH:/home/sanket/.local/bin
 export PATH=$PATH:/home/sanket/.gem/ruby/2.7.0/bin
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
